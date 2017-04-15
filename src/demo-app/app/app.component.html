@@ -1,19 +1,22 @@
-<mdl-layout mdl-layout-fixed-header mdl-layout-fixed-drawer mdl-layout-header-seamed>
-   <!--<mdl-layout-header class="mdl-layout--no-desktop-drawer-button">-->
+<mdl-layout #mainLayout="mdlLayout" mdl-layout-fixed-header mdl-layout-fixed-drawer mdl-layout-header-seamed>
+<!--<mdl-layout #mainLayout="mdlLayout">-->
+    <!--<mdl-layout-header class="mdl-layout--no-desktop-drawer-button">-->
     <mdl-layout-header mdl-layout-header-transparent>
       <!--<mdl-layout-header-row class="main-header">-->
       <mdl-layout-header-row>
-         <!--<div *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button" (click)="mainLayout.toggleDrawer()">
+         <div *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button" (click)="mainLayout.toggleDrawer()">
             <mdl-icon>&#xE5D2;</mdl-icon>
-         </div>-->
+         </div>
          <mdl-layout-title class="docs-layout-title">
             {{title}}
          </mdl-layout-title>
          <mdl-layout-spacer></mdl-layout-spacer>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">Link 1</a>
-            <a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
-            <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">
+              <mdl-icon mdl-badge="3" mdl-badge-overlap>comment</mdl-icon>
+            </a>
+            <!--<a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>-->
           </nav>
         <!--<div class="mdl-cell--hide-phone">
           <a class="github-button mdl-color-text--primary" href="https://github.com/mseemann/angular2-mdl" data-style="mega" data-count-href="/mseemann/angular2-mdl/stargazers" data-count-api="/repos/mseemann/angular2-mdl#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mseemann/angular2-mdl on GitHub">Star</a>
@@ -22,29 +25,28 @@
     </mdl-layout-header>
     <mdl-layout-drawer>
       <nav class="mdl-navigation">
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/theme" routerLinkActive="router-link-active">Themes</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/badge" routerLinkActive="router-link-active">Badges</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/button" routerLinkActive="router-link-active">Buttons</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/card" routerLinkActive="router-link-active">Cards</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/chips" routerLinkActive="router-link-active">Chips</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/dialogs" routerLinkActive="router-link-active">Dialog (imperative)</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/dialogs-declarative" routerLinkActive="router-link-active">Dialog (declarative)</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/icon" routerLinkActive="router-link-active">Icons</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/layout" routerLinkActive="router-link-active">Layouts</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/list" routerLinkActive="router-link-active">List</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/loading" routerLinkActive="router-link-active">Loading</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/menu" routerLinkActive="router-link-active">Menus</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/reactiveForms" routerLinkActive="router-link-active">Reactive Forms</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/shadow" routerLinkActive="router-link-active">Shadows</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/slider" routerLinkActive="router-link-active">Sliders</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/snackbar" routerLinkActive="router-link-active">Snackbar</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/table" routerLinkActive="router-link-active">Tables</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tabs" routerLinkActive="router-link-active">Tabs</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/textfield" routerLinkActive="router-link-active">Text Fields</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/toggle" routerLinkActive="router-link-active">Toggle</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tooltip" routerLinkActive="router-link-active">Tooltips</a>
-        <!--<a class="mdl-navigation__link routerLink"  href="/angular2-mdl-ext">angular2-mdl-ext <mdl-icon class="mdl-color-text--primary">explore</mdl-icon></a>-->
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">Home</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/badge']">Badges</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/theme']">Themes</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/button']">Buttons</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/card']">Cards</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/chips']">Chips</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/dialogs']">Dialog (imperative)</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/dialogs-declarative']">Dialog (declarative)</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/icon']">Icons</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/layout']">Layouts</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/list']">List</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/loading']">Loading</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/menu']">Menus</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/reactiveForms']">Reactive Forms</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/shadow']">Shadows</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/slider']">Sliders</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/snackbar']">Snackbar</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/table']">Tables</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/tabs']">Tabs</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/textfield']">Text Fields</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/toggle']">Toggle</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/tooltip']">Tooltips</a>
       </nav>
     </mdl-layout-drawer>
     <mdl-layout-content class="app-main-content">
@@ -55,3 +57,4 @@
       </div>
     </mdl-layout-content>
 </mdl-layout>
+

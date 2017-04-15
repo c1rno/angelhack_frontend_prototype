@@ -1,0 +1,37 @@
+root-app > .loading {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  position: relative;
+  top: 25vh;
+}
+
+root-app  .text-container {
+  text-align: left;
+  display:inline-block;
+  padding: 0 1em;
+  max-width: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .mdl-layout__drawer-button {
+    line-height: 47px;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.mdl-layout__header {
+  color: inherit !important;
+}
+.mdl-layout__header-row .mdl-navigation__link {
+  color: inherit !important;
+}
+

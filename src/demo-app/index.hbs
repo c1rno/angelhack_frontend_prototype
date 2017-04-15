@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -7,32 +7,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-   <meta name="description" content="Angular Material Design Lite (angular-mdl/core); Angular components
-    for Material Design Lite; Components instead of css classes; Buttons, Snackbar,
-    Layouts, Tabs, Badges, Icons, Menus">
-   <style>
-      root-app > .loading {
-        margin: 0 auto;
-				text-align: center;
-        display: block;
-        position: relative;
-        top: 25vh;
-      }
-
-		 root-app  .text-container {
-			 text-align: left;
-			 display:inline-block;
-			 padding: 0 1em;
-       max-width: 50%;
-		 }
-
-      @media screen and (max-width: 1024px) {
-        .mdl-layout__drawer-button {
-          line-height: 47px;
-        }
-      }
-
-   </style>
 </head>
 <body>
   <root-app>
@@ -105,5 +79,41 @@
 
 {{/if}}
 <dialog-outlet></dialog-outlet>
+<div id="map"></div>
+<script>
+  function initMap() {
+
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      var uluru = {lat: crd.latitude, lng: crd.longitude};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: uluru,
+        disableDefaultUI: true
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    };
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+  }
+</script>
 </body>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zRO-IpOasIQN-ea5HpCec02NvBFZwEg&callback=initMap">
+  </script>
 </html>

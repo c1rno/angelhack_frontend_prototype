@@ -100,5 +100,6 @@ export class Angular2MdlAppComponent {
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
   }
+
 }
 
