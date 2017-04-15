@@ -22,12 +22,18 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
 const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$');
 
 @Component({
-  selector: 'reactive-form-demo',
+  selector: 'create-quest',
   host: hostConfig,
   animations: [
     flyInOutTrigger
   ],
-  templateUrl: 'create-quest.component.html'
+  templateUrl: 'create-quest.component.html',
+  styles: [`
+    .create-quest {
+      background: #f5f2f0;
+      padding: 0 0.5em;
+    }
+  `]
 })
 export class CreateQuest extends AbstractDemoComponent implements OnInit {
 

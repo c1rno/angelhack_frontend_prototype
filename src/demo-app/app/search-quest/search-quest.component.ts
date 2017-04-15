@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 
 @Component({
-  selector: 'tabs-demo',
+  selector: 'search-qests',
   host: hostConfig,
   animations: [
     flyInOutTrigger
@@ -32,6 +32,10 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
     }
     .demo-toggle-disabled-container mdl-switch {
         margin: 5px 0;
+    }
+    .search-quest {
+      background: #f5f2f0;
+      padding: 0 0.5em;
     }
     `
   ],
