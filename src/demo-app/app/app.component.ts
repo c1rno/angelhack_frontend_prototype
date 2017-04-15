@@ -93,12 +93,19 @@ export const appRoutes: Routes = [
   styleUrls: ['app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class Angular2MdlAppComponent extends DialogDeclarativeDemo {
+export class Angular2MdlAppComponent extends DialogDeclarativeDemo implements TabsDemo {
 
   public title = 'Real Quest';
+  public disableTargaryens = true;
+  public activeIndex = 0;
+  public myArray: string[] = null;
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
+  }
+
+  public tabChanged({index}) {
+    this.activeIndex = index;
   }
 
 }

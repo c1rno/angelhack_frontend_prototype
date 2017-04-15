@@ -26,7 +26,7 @@ import { MdlDialogReference } from '../../../lib/components/dialog/mdl-dialog.se
 })
 export class DialogDeclarativeDemo extends AbstractDemoComponent {
 
-  public username: string = 'Marvin';
+  public username: string = '';
   public editedUsername: string;
 
   @ViewChild('editUserDialog') private  editUserDialog: MdlDialogComponent;
