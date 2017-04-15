@@ -69,7 +69,7 @@
   <script>
     if (sessionStorage && history){
       // simulate html5 mode server behavior on github pages - see 404.html
-      var redirect = sessionStorage.redirect;
+      let redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
       if (redirect && redirect != location.href) {
         history.replaceState(null, null, redirect);
@@ -81,26 +81,28 @@
 <dialog-outlet></dialog-outlet>
 <div id="map"></div>
 <script>
+  let globalMapObject;
+
   function initMap() {
 
-    var options = {
+    let options = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0
     };
 
     function success(pos) {
-      var crd = pos.coords;
+      let crd = pos.coords;
 
-      var uluru = {lat: crd.latitude, lng: crd.longitude};
-      var map = new google.maps.Map(document.getElementById('map'), {
+      let uluru = {lat: crd.latitude, lng: crd.longitude};
+      globalMapObject = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
         center: uluru,
         disableDefaultUI: true
       });
-      var marker = new google.maps.Marker({
+      let marker = new google.maps.Marker({
         position: uluru,
-        map: map
+        map: globalMapObject
       });
     };
 

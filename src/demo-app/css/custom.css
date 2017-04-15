@@ -35,3 +35,14 @@ root-app  .text-container {
   color: inherit !important;
 }
 
+a.disabled {
+  color: rgba(117, 117, 117, 0.5) !important;
+}
+
+nav.mdl-navigation > button {
+  color: inherit !important;
+  background-color: inherit !important;
+  background: none !important;
+  box-shadow: none !important;
+  height: 48px !important;
+}

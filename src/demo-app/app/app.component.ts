@@ -93,7 +93,7 @@ export const appRoutes: Routes = [
   styleUrls: ['app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class Angular2MdlAppComponent {
+export class Angular2MdlAppComponent extends DialogDeclarativeDemo {
 
   public title = 'Real Quest';
 

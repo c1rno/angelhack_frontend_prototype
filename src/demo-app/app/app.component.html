@@ -4,17 +4,20 @@
     <mdl-layout-header mdl-layout-header-transparent>
       <!--<mdl-layout-header-row class="main-header">-->
       <mdl-layout-header-row>
-         <div *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button" (click)="mainLayout.toggleDrawer()">
+         <!--<div *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button" (click)="mainLayout.toggleDrawer()">
             <mdl-icon>&#xE5D2;</mdl-icon>
-         </div>
+         </div>-->
          <mdl-layout-title class="docs-layout-title">
             {{title}}
          </mdl-layout-title>
          <mdl-layout-spacer></mdl-layout-spacer>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">
+            <!--<a class="mdl-navigation__link" [routerLink]="['/layout/l1']">
               <mdl-icon mdl-badge="3" mdl-badge-overlap>comment</mdl-icon>
-            </a>
+            </a>-->
+            <button #editUserButton mdl-button mdl-button-type="raised" mdl-colored="primary"mdl-ripple (click)="editUserDialog.show()">
+              <mdl-icon mdl-badge="3" mdl-badge-overlap>comment</mdl-icon>
+            </button>
             <!--<a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
             <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>-->
           </nav>
@@ -26,6 +29,11 @@
     <mdl-layout-drawer>
       <nav class="mdl-navigation">
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">Home</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">Search quest</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">In progress quests</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link disabled" [attr.href]="null">Completed quests</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link disabled" [attr.href]="null">Settings</a>
+        <hr>
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/badge']">Badges</a>
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/theme']">Themes</a>
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/button']">Buttons</a>
@@ -56,5 +64,27 @@
         </div>
       </div>
     </mdl-layout-content>
+    <mdl-dialog #editUserDialog
+                [mdl-dialog-config]="{
+                  styles:{
+                    'width': '300px',
+                    'height': '100%',
+                  },
+                  clickOutsideToClose: true,
+                  isModal:true,
+                  openFrom: editUserButton,
+                  enterTransitionDuration: 400,
+                  leaveTransitionDuration: 400}"
+                (show)="onDialogShow(dialogRef)"
+                (hide)="onDialogHide()">
+      <!--<h3 class="mdl-dialog__title">Edit User</h3>-->
+      <div class="mdl-dialog__content">
+        <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+        <button mdl-button (click)="editUserDialog.close()" mdl-ripple>Cancel</button>
+      </div>
+    </mdl-dialog>
 </mdl-layout>
 
