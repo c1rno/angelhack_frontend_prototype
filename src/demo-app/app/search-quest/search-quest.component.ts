@@ -11,6 +11,7 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
+import { AppService } from '../app-service';
 
 @Component({
   selector: 'search-qests',
@@ -46,8 +47,10 @@ export class SearchQuest extends AbstractDemoComponent implements OnInit {
   public activeIndex = 0;
   public disableTargaryens = true;
   public myArray: string[] = null;
+  public quests = [];
+  public errorMessage = '';
 
-  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+  constructor(router: Router, route: ActivatedRoute, titleService: Title, private appService: AppService) {
     super(router, route, titleService);
   }
 
@@ -60,5 +63,14 @@ export class SearchQuest extends AbstractDemoComponent implements OnInit {
     setTimeout(() => {
       this.myArray = ['a', 'b', 'c'];
     }, 1000);
+    super.ngOnInit();
+    this.getQuests();
   }
+
+  getQuests() {
+    this.appService.getQuests().subscribe(
+      quests => this.quests = quests,
+      error =>  this.errorMessage = <any>error);
+  }
+
 }

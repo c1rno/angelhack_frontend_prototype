@@ -1,4 +1,5 @@
 <div class="search-quest">
+  <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
   <mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
     <mdl-tab-panel mdl-tab-panel-title="Active quests">
       <![CDATA[
@@ -55,12 +56,24 @@
     </mdl-tab-panel>
     <mdl-tab-panel mdl-tab-panel-title="Search">
       <mdl-textfield type="text" label="Filter" floating-label autofocus></mdl-textfield>
-      <ul>
-        <li>Tywin</li>
-        <li>Cersei</li>
-        <li>Jamie</li>
-        <li>Tyrion</li>
-      </ul>
+      <!--<ul>-->
+        <!--<li *ngFor="let quest of quests">{{quest}}</li>-->
+        <!--<li>{{quests}}</li>-->
+      <!--</ul>-->
+      <mdl-list>
+        <mdl-list-item lines="3" *ngFor="let quest of quests">
+          <mdl-list-item-primary-content>
+            <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+            <span>{{quest.producer.user.username}}</span>
+            <mdl-list-item-text-body>
+              {{quest.stages[0].description}}
+            </mdl-list-item-text-body>
+          </mdl-list-item-primary-content>
+          <mdl-list-item-secondary-content>
+            <a href="#"><mdl-icon>star</mdl-icon></a>
+          </mdl-list-item-secondary-content>
+        </mdl-list-item>
+      </mdl-list>
     </mdl-tab-panel>
   </mdl-tabs>
 </div>

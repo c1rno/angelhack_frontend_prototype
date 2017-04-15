@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { BrowserModule,
   Title } from '@angular/platform-browser';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdlModule } from './../../lib/components/index';
 import { RouterModule } from '@angular/router';
@@ -40,6 +41,7 @@ import { LoginModule } from './dialog/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateQuest } from './create-quest/create-quest.component';
 import { SearchQuest } from './search-quest/search-quest.component';
+import { AppService } from './app-service';
 
 @NgModule({
   imports: [
@@ -49,7 +51,9 @@ import { SearchQuest } from './search-quest/search-quest.component';
     MdlModule,
     RouterModule.forRoot(appRoutes, {enableTracing: false}),
     LoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule,
+    JsonpModule
   ],
   declarations: [
     Angular2MdlAppComponent,
@@ -84,7 +88,8 @@ import { SearchQuest } from './search-quest/search-quest.component';
     SearchQuest
   ],
   providers: [
-    Title
+    Title,
+    AppService
   ],
   entryComponents: [Angular2MdlAppComponent],
   bootstrap: [],
