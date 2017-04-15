@@ -22,7 +22,7 @@
     "e2e": "protractor config/protractor.sauce.conf.js",
     "e2e:local": "protractor config/protractor.conf.js",
     "generate-scss-from-mdl-scss": "rimraf src/lib/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --host 0.0.0.0",
     "start:dist": "rimraf dist && webpack --config config/webpack/webpack.prod.js --progress && http-server dist -a localhost -p 4200",
     "test": "karma start config/karma.conf.js",
     "test:watch": "karma start config/karma.conf.js --watch"

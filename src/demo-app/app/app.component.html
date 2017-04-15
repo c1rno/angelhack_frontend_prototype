@@ -16,7 +16,7 @@
               <mdl-icon mdl-badge="3" mdl-badge-overlap>comment</mdl-icon>
             </a>-->
             <button #editUserButton mdl-button mdl-button-type="raised" mdl-colored="primary"mdl-ripple (click)="editUserDialog.show()">
-              <mdl-icon mdl-badge="3" mdl-badge-overlap>comment</mdl-icon>
+              <mdl-icon mdl-badge="2" mdl-badge-overlap>comment</mdl-icon>
             </button>
             <!--<a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
             <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>-->
@@ -29,8 +29,8 @@
     <mdl-layout-drawer>
       <nav class="mdl-navigation">
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">Home</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">Search quest</a>
-        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/']">In progress quests</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/search']">Search quest</a>
+        <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" [routerLink]="['/create']">Create quest</a>
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link disabled" [attr.href]="null">Completed quests</a>
         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link disabled" [attr.href]="null">Settings</a>
         <!--<hr>
