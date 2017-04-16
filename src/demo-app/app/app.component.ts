@@ -41,6 +41,7 @@ import { AbstractDemoComponent } from './abstract-demo.component';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 import { CreateQuest } from './create-quest/create-quest.component';
 import { SearchQuest } from './search-quest/search-quest.component';
+import { AppService } from './app-service';
 
 @Component({
   selector: 'home',
@@ -103,6 +104,13 @@ export class Angular2MdlAppComponent extends DialogDeclarativeDemo implements Ta
   public disableTargaryens = true;
   public activeIndex = 0;
   public myArray: string[] = null;
+  public messages = [];
+  public errorMessage = '';
+  public selfUserName = 'Leo';
+
+  constructor(router: Router, route: ActivatedRoute, titleService: Title, private appService: AppService) {
+    super(router, route, titleService);
+  }
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
@@ -110,6 +118,26 @@ export class Angular2MdlAppComponent extends DialogDeclarativeDemo implements Ta
 
   public tabChanged({index}) {
     this.activeIndex = index;
+  }
+
+  public onDialogShow(dialogRef){
+    super.onDialogShow(dialogRef);
+    this.getMessages()
+  }
+
+  public getMessages() {
+    this.appService.getChatMessages().subscribe(
+      msgs => this.messages = msgs,
+      error =>  this.errorMessage = <any>error);
+  }
+
+  public saveUser() {
+    let ret = this.appService.sendChatMessages(this.selfUserName, this.username)
+      .subscribe(
+              msgs => this.messages.push({user: this.selfUserName, msg: this.username}),
+              error =>  this.errorMessage = <any>error
+      );
+
   }
 
 }

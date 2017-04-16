@@ -13,7 +13,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
   // URL to web API
-  private questUrl = 'http://172.16.16.44:8012/api/questmodel';
+  private questUrl = 'http://127.0.0.1:8000/api/questmodel';
+  private chatUrl = 'http://127.0.0.1:8000/chat/'
   private requestOptions = new RequestOptions({
     headers: new Headers({
       'Content-Type': 'application/json',
@@ -35,18 +36,34 @@ export class AppService {
                     .catch(this.handleError);
   }
 
+  getChatMessages() {
+    return this.http.get(this.chatUrl, this.requestOptions)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  sendChatMessages(user, msg) {
+    return this.http.post(this.chatUrl, {user: user, msg: msg}, this.requestOptions)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
-    return body.map((elem) => elem || {})
-               .map(function (elem) {
-                 if ( !Array.isArray(elem.stages) ) {
-                   elem.stages = [{}];
-                 }
-                 if (elem.stages.length == 0) {
-                   elem.stages = [{}];
-                 }
-                 return elem
-                });
+    if ( Array.isArray(body) ) {
+      return body.map((elem) => elem || {})
+                .map(function (elem) {
+                  if ( !Array.isArray(elem.stages) ) {
+                    elem.stages = [{}];
+                  }
+                  if (elem.stages.length == 0) {
+                    elem.stages = [{}];
+                  }
+                  return elem
+                  });
+    }
+    return body
+
   }
 
   private handleError (error: Response | any) {
