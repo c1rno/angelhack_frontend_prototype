@@ -104,6 +104,8 @@
         position: uluru,
         map: globalMapObject
       });
+
+      drowLine();
     };
 
     function error(err) {
@@ -127,10 +129,28 @@
       animate: false
     });
   </script>-->
-  <script>
-    (function() {
-      // TODO https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
+ <script>
+    function drowLine() {
       console.debug(`Map: ${globalMapObject}`);
-    })()
+
+      var flightPlanCoordinates = [
+        {lat: 54.858010, lng:  83.111108},
+        {lat: 54.857763, lng: 83.109341},
+        {lat: 54.858446, lng: 83.110573},
+        {lat: 54.857445, lng: 83.110518},
+        {lat: 54.858283, lng: 83.109739},
+        {lat: 54.858010, lng: 83.111108},
+        ];
+
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(globalMapObject);
+    }
   </script>
 </html>
