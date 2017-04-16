@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {
+  Http,
+  Response,
+  Headers,
+  RequestOptions
+} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -9,11 +14,17 @@ import 'rxjs/add/operator/map';
 export class AppService {
   // URL to web API
   private questUrl = 'http://172.16.16.44:8012/api/questmodel';
+  private requestOptions = new RequestOptions({
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'X-auth-token': '1234qwerty'
+    })
+  });
 
   constructor (private http: Http) {}
 
   getQuests(): Observable<any> {
-    return this.http.get(this.questUrl)
+    return this.http.get(this.questUrl, this.requestOptions)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
