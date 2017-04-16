@@ -122,7 +122,9 @@ export class Angular2MdlAppComponent extends DialogDeclarativeDemo implements Ta
 
   public onDialogShow(dialogRef){
     super.onDialogShow(dialogRef);
-    this.getMessages()
+    this.getMessages();
+    this.username = '';
+    this.errorMessage = '';
   }
 
   public getMessages() {
@@ -134,10 +136,11 @@ export class Angular2MdlAppComponent extends DialogDeclarativeDemo implements Ta
   public saveUser() {
     let ret = this.appService.sendChatMessages(this.selfUserName, this.username)
       .subscribe(
-              msgs => this.messages.push({user: this.selfUserName, msg: this.username}),
+              msgs => {this.messages.push({user: this.selfUserName, msg: this.username});
+                       this.username = '';
+                       this.errorMessage = '';},
               error =>  this.errorMessage = <any>error
       );
-
   }
 
 }
