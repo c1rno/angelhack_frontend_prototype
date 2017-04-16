@@ -39,59 +39,43 @@ export class CreateQuest extends AbstractDemoComponent implements OnInit {
 
   public disableForm = false;
   public form: FormGroup;
-  public firstName = new FormControl('');
-  public lastName = new FormControl('', Validators.required);
-  public email = new FormControl('', emailValidator);
-  public email2 = new FormControl('', emailValidator);
-  public breakfast = new FormControl('Continental');
-  public toDrink = new FormControl('Tea');
-
-  public testForm: FormGroup;
+  public questName = new FormControl('Quest Name');
+  public stageName = new FormControl('Stage Name');
+  public description = new FormControl('Description');
+  public cost = new FormControl('Cost');
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
   }
 
+  public addStage() {
+    return this.fb.group({
+      'Stage Name':  this.stageName,
+      'Description': this.description,
+      'Cost': this.cost,
+    })
+  }
+
   public ngOnInit() {
     super.ngOnInit();
     this.form = this.fb.group({
-      'firstName':  this.firstName,
-      'lastName':   this.lastName,
-      'email':      this.email,
-      'email2':     this.email2,
-      'breakfast':  this.breakfast,
-      'toDrink':    this.toDrink
-    });
-    this.form.valueChanges
-      .map((formValues) => {
-        formValues.firstName = formValues.firstName.toUpperCase();
-        return formValues;
-      })
-      // .filter((formValues) => this.form.valid)
-      .subscribe((formValues) => {
-        console.log(`Model Driven Form valid: ${this.form.valid} value:`, JSON.stringify(formValues));
-      });
-
-    // testform radio buttons inside groups
-    this.testForm = new FormGroup({
-      group1: new FormGroup({
-        type: new FormControl('')
-      }),
-      group2: new FormGroup({
-        type: new FormControl('')
-      })
-    });
+      'questName':  this.questName,
+      stages: this.fb.array([
+                this.addStage(),
+            ]),
+    }); 
+    this.createStage();
   }
 
   public onSubmit() {
     console.log(this.form);
   }
 
-  public onDisableForm(formDisabled: boolean) {
-    if ( formDisabled ) {
-      this.form.disable();
-    } else {
-      this.form.enable();
-    }
+  public createStage() {
+    console.log("CREATE_STAGE");
+    this.form['stages'].push(this.addStage());
+    // const control = < any > this.form.controls['stages'];
+    // control.push(this.addStage());
+    // this.form = control;
   }
 }
