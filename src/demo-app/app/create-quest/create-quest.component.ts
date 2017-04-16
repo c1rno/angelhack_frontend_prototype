@@ -8,6 +8,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  FormArray,
   FormBuilder
 } from '@angular/forms';
 import 'rxjs/add/operator/filter';
@@ -39,41 +40,49 @@ export class CreateQuest extends AbstractDemoComponent implements OnInit {
 
   public disableForm = false;
   public form: FormGroup;
-  public questName = new FormControl('Quest Name');
-  public stageName = new FormControl('Stage Name');
-  public description = new FormControl('Description');
-  public cost = new FormControl('Cost');
+  public questName; // = new FormControl('Quest Name');
+  public stageName; // = new FormControl('Stage Name');
+  public description; // = new FormControl('Description');
+  public cost; // = new FormControl('Cost');
+  public stages;
 
-  constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    titleService: Title) {
     super(router, route, titleService);
-  }
-
-  public addStage() {
-    return this.fb.group({
-      'Stage Name':  this.stageName,
-      'Description': this.description,
-      'Cost': this.cost,
-    })
   }
 
   public ngOnInit() {
     super.ngOnInit();
-    this.form = this.fb.group({
-      'questName':  this.questName,
-      stages: this.fb.array([
-                this.addStage(),
-            ]),
-    }); 
-    this.createStage();
+
+    this.stages = new FormArray([
+      new FormControl('Stage Name'),
+      // this.makeStage()
+    ]);
+
+    this.form = new FormGroup({
+      questName: new FormControl('Quest Name'),
+      stages: this.stages
+    });
   }
 
-  public onSubmit() {
-    console.log(this.form);
+  public makeStage() {
+    return new FormGroup({
+      'Stage Name':  new FormControl('Stage Name'),
+      'Description': new FormControl('Description'),
+      'Cost': new FormControl('Cost'),
+    })
   }
 
-  public createStage() {
+  // public onSubmit() {
+  //   console.log(this.form);
+  // }
+
+  public addStage() {
     console.log("CREATE_STAGE");
-    this.form['stages'].push(this.addStage());
+    // this.stages.push(this.makeStage());
+    this.stages.push(new FormControl('Stage Name'));
     // const control = < any > this.form.controls['stages'];
     // control.push(this.addStage());
     // this.form = control;

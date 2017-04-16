@@ -3,15 +3,18 @@
     <p>
       <mdl-textfield label="Quest Name" name="questName" type="text" formControlName="questName" floating-label></mdl-textfield>
     </p>
-    <p *ngFor="let control of form.stages; let i=index">
-      <!--{{control}}-->
-      <input [formControlName]="i">
-    </p>
+    <div formArrayName="stages">
+      <div *ngFor="let control of stages.controls; let i=index" >
+        <mdl-textfield [formControlName]="i" type="text" label="Stage Name" floating-label></mdl-textfield>
+      </div>
+    </div>
     <p>
-    <button mdl-button (click)="createStage()" mdl-button-type="mini-fab" mdl-colored="primary" >
-      <mdl-icon>add</mdl-icon>
-    </button>
-      <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
+      <button mdl-button (click)="addStage()" mdl-button-type="mini-fab" mdl-colored="primary" >
+        <mdl-icon>add</mdl-icon>
+      </button>
+      <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">
+        Submit
+      </button>
     </p>
   </form>
 </div>

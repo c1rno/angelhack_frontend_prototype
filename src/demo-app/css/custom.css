@@ -47,3 +47,7 @@ nav.mdl-navigation > button {
   height: 48px !important;
 }
 
+.mdl-textfield {
+  width: 100% !important;
+}
+
