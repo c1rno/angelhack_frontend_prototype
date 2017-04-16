@@ -57,21 +57,21 @@ export class CreateQuest extends AbstractDemoComponent implements OnInit {
     super.ngOnInit();
 
     this.stages = new FormArray([
-      new FormControl('Stage Name'),
+      new FormControl(''),
       // this.makeStage()
     ]);
 
     this.form = new FormGroup({
-      questName: new FormControl('Quest Name'),
+      questName: new FormControl(''),
       stages: this.stages
     });
   }
 
   public makeStage() {
     return new FormGroup({
-      'Stage Name':  new FormControl('Stage Name'),
-      'Description': new FormControl('Description'),
-      'Cost': new FormControl('Cost'),
+      'Stage Name':  new FormControl(''),
+      'Description': new FormControl(''),
+      'Cost': new FormControl(''),
     })
   }
 
@@ -82,7 +82,7 @@ export class CreateQuest extends AbstractDemoComponent implements OnInit {
   public addStage() {
     console.log("CREATE_STAGE");
     // this.stages.push(this.makeStage());
-    this.stages.push(new FormControl('Stage Name'));
+    this.stages.push(new FormControl(''));
     // const control = < any > this.form.controls['stages'];
     // control.push(this.addStage());
     // this.form = control;
