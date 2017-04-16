@@ -29,6 +29,12 @@ export class AppService {
                     .catch(this.handleError);
   }
 
+  getQuestsByConsumer(consumer_id: Number): Observable<any> {
+    return this.http.get(`${this.questUrl}?consumer=${consumer_id}`, this.requestOptions)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body.map((elem) => elem || {})
