@@ -48,6 +48,8 @@ export class SearchQuest extends AbstractDemoComponent implements OnInit {
   public disableTargaryens = true;
   public myArray: string[] = null;
   public quests = [];
+  private self_id = 1;
+  public self_quests = [];
   public errorMessage = '';
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private appService: AppService) {
@@ -65,11 +67,18 @@ export class SearchQuest extends AbstractDemoComponent implements OnInit {
     }, 1000);
     super.ngOnInit();
     this.getQuests();
+    this.getSelfQuests();
   }
 
   getQuests() {
     this.appService.getQuests().subscribe(
       quests => this.quests = quests,
+      error =>  this.errorMessage = <any>error);
+  }
+
+  getSelfQuests() {
+    this.appService.getQuestsByConsumer(this.self_id).subscribe(
+      quests => this.self_quests = quests,
       error =>  this.errorMessage = <any>error);
   }
 
